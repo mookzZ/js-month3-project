@@ -2,6 +2,7 @@
 .gmail {
     background-color: black;
     padding: 100px 0;
+    border-bottom: 2px solid orange;
 }
 
 .inner_gmail {
