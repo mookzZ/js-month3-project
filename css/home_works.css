@@ -1,0 +1,41 @@
+
+.gmail {
+    background-color: black;
+    padding: 100px 0;
+}
+
+.inner_gmail {
+    display: flex;
+    gap: 10px 0;
+    align-items: center;
+    flex-direction: column;
+}
+
+.move_block {
+    background: black;
+    padding: 100px 0;
+    border-bottom: 2px solid orange;
+}
+
+.inner_move_block {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px 0;
+}
+
+.parent_block {
+    height: 54px;
+    width: 1000px;
+    border: 2px solid orange;
+    position: relative;
+}
+
+.child_block {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    background: red;
+    left: 0;
+}
+
