@@ -19,12 +19,17 @@ check.onclick = () => {
 
 //MOVING SQUARE//
 const redSquare = document.querySelector('.child_block')
-let position = 0
+let positionX = 0
+let positionY = 0
 
 function moveBlock() {
-    position += 1
-    redSquare.style.left = position + "px"
-    if (position < 946) {
+    if (positionX < 446) {
+        positionX += 1
+        redSquare.style.left = positionX + 'px'
+        setTimeout(moveBlock, 1)
+    } else if (positionY < 446) {
+        positionY += 1
+        redSquare.style.top = positionY + 'px'
         setTimeout(moveBlock, 1)
     }
 }
