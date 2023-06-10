@@ -1,7 +1,7 @@
 .gmail {
     background-color: black;
     padding: 100px 0;
-    border-bottom: 2px solid orange;
+    border-bottom: 1px solid white;
 }
 
 .inner_gmail {
@@ -39,3 +39,34 @@
     left: 0;
 }
 
+.stopwatch {
+    background-color: black;
+    padding: 100px;
+}
+
+.stopwatch_inner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 50px 0;
+}
+
+.stopwatch_buttons {
+    display: flex;
+    justify-content: space-between;
+    width: 400px;
+}
+
+.stopwatch_number {
+    color: white;
+}
+
+.button1 {
+    background-color: black;
+    border: 2px solid orange;
+    border-radius: 10px;
+    padding: 10px;
+    color: white;
+    cursor: pointer;
+}
