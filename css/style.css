@@ -103,6 +103,10 @@
     overflow: hidden;
     border: 3px solid orange;
     border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 30px;
 }
 
 .slide {
@@ -129,9 +133,9 @@
 }
 
 .slide_card p {
-    margin-top: 10px;
     font-size: 16px;
     text-align: justify;
+    margin: 10px 0;
 }
 
 .slide_card a {
@@ -143,5 +147,15 @@
     display: block;
 }
 
+/* VIDEO BLOCK */
 
+.block_video {
+    background: black;
+    padding: 100px 0;
+}
 
+.inner_block_video {
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+}

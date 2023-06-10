@@ -52,7 +52,16 @@ h1 {
 
 h2 {
     text-align: center;
-    font-size: 50px;
+    font-size: 30px;
+    color: white;
+    margin: 0 auto;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+h3 {
+    text-align: center;
+    font-size: 30px;
     color: white;
     margin: 0 auto;
     text-transform: uppercase;
@@ -77,3 +86,28 @@ input {
     background: black;
     border: 2px solid orange;
 }
+
+.checker {
+    color: white;
+    font-size: 30px;
+}
+
+.btn-slide {
+    display: block;
+    width: 100px;
+    height: 100px;
+    background: orange;
+    color: black;
+    font-size: 20px;
+    text-transform: uppercase;
+    border-radius: 50%;
+    font-weight: 800;
+    z-index: 1;
+}
+
+.btn-slide:hover {
+    background: #b68733 !important;
+    cursor: pointer;
+    color: white;
+}
+

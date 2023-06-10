@@ -30,6 +30,9 @@ window.onkeydown = (event) => {
 // SLIDER BLOCK
 
 const slides = document.querySelectorAll('.slide')
+const next = document.querySelector('#next')
+const prev = document.querySelector('#prev')
+let index = 0
 
 const hideSlide = () => {
     slides.forEach((slide) => {
@@ -43,7 +46,8 @@ const showSlide = (i = 0) => {
 }
 
 hideSlide()
-showSlide()
+showSlide(index)
+
 
 const autoSlider = (i = 0) => {
     setInterval(() => {
@@ -53,6 +57,19 @@ const autoSlider = (i = 0) => {
         }
         hideSlide()
         showSlide(i)
-    }, 6000)
+    }, 7000)
 }
-autoSlider()
+
+next.onclick = () => {
+    index < slides.length - 1 ? index++ : index = 0
+    hideSlide()
+    showSlide(index)
+}
+
+prev.onclick = () => {
+    index > 0 ? index-- : index = slides.length - 1
+    hideSlide()
+    showSlide(index)
+}
+
+autoSlider(index)
