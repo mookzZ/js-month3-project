@@ -50,16 +50,36 @@ const stopwatchStop = document.querySelector('.stopwatch_stop')
 const stopwatchClear = document.querySelector('.stopwatch_clear')
 
 let number = 0
+let isNumberRising = true
 
 const start = () => {
-    number += 1
-    stopwatchNumber.innerHTML = `${number} сек.`
+    if (isNumberRising === true) {
+        number += 1
+        stopwatchNumber.innerHTML = `${number} сек.`
+        setTimeout(start, 1000)
+        isNumberRising = true
+    }
 }
 
 const stop = () => {
-    clearInterval()
+    isNumberRising = false
 }
 
-stopwatchStart.onclick = function (startInterval) {
-    setInterval(start, 1000)
+const resume = () => {
+    isNumberRising = true
 }
+
+const clear = () => {
+    isNumberRising = false
+    number = 0
+    stopwatchNumber.innerHTML = `${number} сек.`
+}
+
+stopwatchStart.onclick = () => {start()}
+stopwatchStop.onclick = () => {stop()}
+stopwatchResume.onclick = () => {
+    resume()
+    start()
+}
+stopwatchClear.onclick = () => {clear()}
+
