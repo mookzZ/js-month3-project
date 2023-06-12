@@ -52,20 +52,28 @@ const stopwatchClear = document.querySelector('.stopwatch_clear')
 let number = 0
 let isNumberRising = true
 
+const risingNumber = () => {
+    stopwatchStart.disabled = false
+    isNumberRising = true
+}
+
 const start = () => {
     if (isNumberRising === true) {
         number += 1
         stopwatchNumber.innerHTML = `${number} сек.`
         setTimeout(start, 1000)
         isNumberRising = true
+        stopwatchStart.disabled = true
     }
 }
 
 const stop = () => {
+    stopwatchResume.disabled = false
     isNumberRising = false
 }
 
 const resume = () => {
+    stopwatchResume.disabled = true
     isNumberRising = true
 }
 
@@ -75,11 +83,17 @@ const clear = () => {
     stopwatchNumber.innerHTML = `${number} сек.`
 }
 
-stopwatchStart.onclick = () => {start()}
+stopwatchStart.onclick = () => {
+    risingNumber()
+    start()
+}
 stopwatchStop.onclick = () => {stop()}
 stopwatchResume.onclick = () => {
     resume()
     start()
 }
-stopwatchClear.onclick = () => {clear()}
+stopwatchClear.onclick = () => {
+    clear()
+    stopwatchStart.disabled = false
+}
 

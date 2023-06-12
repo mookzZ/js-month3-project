@@ -42,6 +42,7 @@
 .stopwatch {
     background-color: black;
     padding: 100px;
+    border-bottom: 2px solid orange;
 }
 
 .stopwatch_inner {
