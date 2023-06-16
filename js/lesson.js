@@ -52,7 +52,7 @@ tabsParent.onclick = (event) => {
 let slide = 0
 
 const autoSlider = () => {
-    const interval = setInterval(() => {
+    setInterval(() => {
         if (slide <= 4) {
             hideTabContent()
             showTabContent(slide)
@@ -87,3 +87,11 @@ const closeModal = () => {
 modalTrigger.onclick = () => openModal()
 closeModalButton.onclick = () => closeModal()
 modal.onclick = (event) => event.target === modal && closeModal()
+
+window.addEventListener('scroll', function() {
+    if (window.innerHeight + window.pageYOffset >= document.body.offsetHeight) {
+        openModal()
+    }
+})
+
+setTimeout(openModal, 10000)

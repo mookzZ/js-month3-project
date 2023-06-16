@@ -116,3 +116,11 @@ const closeModal = () => {
 modalTrigger.onclick = () => openModal()
 closeModalButton.onclick = () => closeModal()
 modal.onclick = (event) => event.target === modal && closeModal()
+
+window.addEventListener('scroll', function() {
+    if (window.innerHeight + window.pageYOffset >= document.body.offsetHeight) {
+        openModal()
+    }
+})
+
+setTimeout(openModal, 10000)
