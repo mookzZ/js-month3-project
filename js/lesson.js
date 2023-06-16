@@ -48,3 +48,42 @@ tabsParent.onclick = (event) => {
         })
     }
 }
+
+let slide = 0
+
+const autoSlider = () => {
+    const interval = setInterval(() => {
+        if (slide <= 4) {
+            hideTabContent()
+            showTabContent(slide)
+            slide++
+        } else {
+            slide = 0
+            hideTabContent()
+            showTabContent(0)
+            slide++
+        }
+    }, 3000)
+}
+
+autoSlider()
+
+// MODAL
+
+const modal = document.querySelector('.modal')
+const modalTrigger = document.querySelector('#btn-get')
+const closeModalButton = document.querySelector('.modal_close')
+
+const openModal = () => {
+    modal.style.display = 'block'
+    document.body.style.overflow = 'hidden'
+}
+
+const closeModal = () => {
+    modal.style.display = 'none'
+    document.body.style.overflow = ''
+}
+
+modalTrigger.onclick = () => openModal()
+closeModalButton.onclick = () => closeModal()
+modal.onclick = (event) => event.target === modal && closeModal()
