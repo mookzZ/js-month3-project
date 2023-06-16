@@ -68,6 +68,13 @@ h3 {
     font-weight: 600;
 }
 
+h4 {
+    font-size: 24px;
+    color: white;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
 strong {
     color: #F79300;
 }
