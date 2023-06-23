@@ -124,3 +124,38 @@ window.addEventListener('scroll', function() {
 })
 
 setTimeout(openModal, 10000)
+
+// CURRENCY CONVERTER
+
+const som = document.querySelector('#som')
+const usd = document.querySelector('#usd')
+const eur = document.querySelector('#eur')
+
+const convert = (element, targetElement, targetElement2, curr) => {
+    element.oninput = () => {
+        const request = new XMLHttpRequest()
+        request.open('GET', '../json/currency.json')
+        request.setRequestHeader('Content-type', 'application/json')
+        request.send()
+
+        request.onload = () => {
+            const response = JSON.parse(request.response)
+            if (curr === 'curSom') {
+                targetElement.value = (element.value / response.somUsd).toFixed(2)
+                targetElement2.value = (element.value / response.somEur).toFixed(2)
+            } else if (curr === 'curUsd') {
+                targetElement.value = (element.value * response.somUsd).toFixed(2)
+                targetElement2.value = (element.value * response.usdEur).toFixed(2)
+            } else {
+                targetElement.value = (element.value * response.somEur).toFixed(2)
+                targetElement2.value = (element.value * response.eurUsd).toFixed(2)
+            }
+            element.value === '' && (targetElement.value = '')
+            element.value === '' && (targetElement2.value = '')
+        }
+    }
+}
+
+convert(som, usd, eur, 'curSom')
+convert(usd, som, eur, 'curUsd')
+convert(eur, som, usd, 'curEur')
