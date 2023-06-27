@@ -168,9 +168,6 @@ const nextButton = document.querySelector('.next')
 const prevButton = document.querySelector('.prev')
 let count = 1
 
-nextButton.onclick = () => cardRequest('next')
-prevButton.onclick = () => cardRequest('prev')
-
 const dataRequest = () => {
     fetch(`https://jsonplaceholder.typicode.com/todos/${count}`)
         .then(response => response.json())
@@ -203,6 +200,10 @@ const cardRequest = (button) => {
         dataRequest()
     }
 }
+
+
+nextButton.onclick = () => cardRequest('next')
+prevButton.onclick = () => cardRequest('prev')
 
 cardRequest()
 
