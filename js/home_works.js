@@ -99,31 +99,31 @@ stopwatchClear.onclick = () => {
 
 // MODAL
 
-const modal = document.querySelector('.modal')
-const modalTrigger = document.querySelector('#btn-get')
-const closeModalButton = document.querySelector('.modal_close')
-
-const openModal = () => {
-    modal.style.display = 'block'
-    document.body.style.overflow = 'hidden'
-}
-
-const closeModal = () => {
-    modal.style.display = 'none'
-    document.body.style.overflow = ''
-}
-
-modalTrigger.onclick = () => openModal()
-closeModalButton.onclick = () => closeModal()
-modal.onclick = (event) => event.target === modal && closeModal()
-
-window.addEventListener('scroll', function() {
-    if (window.innerHeight + window.pageYOffset >= document.body.offsetHeight) {
-        openModal()
-    }
-})
-
-setTimeout(openModal, 10000)
+// const modal = document.querySelector('.modal')
+// const modalTrigger = document.querySelector('#btn-get')
+// const closeModalButton = document.querySelector('.modal_close')
+//
+// const openModal = () => {
+//     modal.style.display = 'block'
+//     document.body.style.overflow = 'hidden'
+// }
+//
+// const closeModal = () => {
+//     modal.style.display = 'none'
+//     document.body.style.overflow = ''
+// }
+//
+// modalTrigger.onclick = () => openModal()
+// closeModalButton.onclick = () => closeModal()
+// modal.onclick = (event) => event.target === modal && closeModal()
+//
+// window.addEventListener('scroll', function() {
+//     if (window.innerHeight + window.pageYOffset >= document.body.offsetHeight) {
+//         openModal()
+//     }
+// })
+//
+// setTimeout(openModal, 10000)
 
 // CURRENCY CONVERTER
 
@@ -159,3 +159,55 @@ const convert = (element, targetElement, targetElement2, curr) => {
 convert(som, usd, eur, 'curSom')
 convert(usd, som, eur, 'curUsd')
 convert(eur, som, usd, 'curEur')
+
+
+// CARDS
+
+const card = document.querySelector('.card')
+const nextButton = document.querySelector('.next')
+const prevButton = document.querySelector('.prev')
+let count = 1
+
+nextButton.onclick = () => cardRequest('next')
+prevButton.onclick = () => cardRequest('prev')
+
+const dataRequest = () => {
+    fetch(`https://jsonplaceholder.typicode.com/todos/${count}`)
+        .then(response => response.json())
+        .then(data => {
+            card.innerHTML = `
+                        <h3>Title: ${data.title}</h3>
+                        <div>ID: ${data.id}</div>
+                        <div>${data.completed}</div>
+                    `
+        })
+}
+
+const cardRequest = (button) => {
+    if (button === 'next') {
+        if (count < 200) {
+            count++
+            dataRequest()
+        } else {
+            count = 200
+        }
+    } else if (button === 'prev') {
+        if (count > 1) {
+            count--
+            dataRequest()
+        } else {
+            count = 1
+        }
+    } else {
+        count = 1
+        dataRequest()
+    }
+}
+
+cardRequest()
+
+fetch(`https://jsonplaceholder.typicode.com/posts`)
+    .then(response => response.json())
+    .then(data => {
+        console.log(data)
+    })
