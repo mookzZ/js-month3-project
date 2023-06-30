@@ -133,30 +133,3 @@
     font-family: sans-serif;
 }
 
-.weather {
-    background-color: black;
-    padding: 100px 0;
-    border-top: 2px solid #25D500;
-}
-
-.weather_block {
-    margin-top: 50px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 0 50px;
-    padding: 20px;
-    border: 2px solid #25D500;
-    border-radius: 10px;
-}
-
-.weather_inner span {
-    color: white;
-    width: 200px;
-}
-
-#weather_inputCity {
-    width: 300px;
-    padding: 5px;
-    border-radius: 5px;
-}

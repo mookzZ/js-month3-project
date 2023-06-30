@@ -216,27 +216,3 @@ fetch(`https://jsonplaceholder.typicode.com/posts`)
     })
 
 
-// WEATHER
-const city = document.querySelector('.weather_city')
-const temp = document.querySelector('.weather_temp')
-const apiKey = 'e417df62e04d3b1b111abeab19cea714'
-
-const citySearch = () => {
-    const inputCity = document.querySelector('#weather_inputCity')
-    inputCity.oninput = (event) => {
-        const cityNameValue = event.target.value
-        const fetchWeather = async () => {
-            try {
-                const response = await fetch(`http://api.openweathermap.org/data/2.5/weather?q=${cityNameValue}&appid=${apiKey}`)
-                const data = await response.json()
-                city.innerHTML = `Город: ${data?.name ? data.name : 'City not found...'}`
-                temp.innerHTML = data?.main?.temp ? Math.round(data?.main?.temp - 273) + '°C' : '...'
-            } catch (e) {
-                console.error(e, 'fatal error')
-            }
-        }
-        fetchWeather()
-    }
-}
-
-citySearch()
