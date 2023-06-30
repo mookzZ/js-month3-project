@@ -99,31 +99,31 @@ stopwatchClear.onclick = () => {
 
 // MODAL
 
-// const modal = document.querySelector('.modal')
-// const modalTrigger = document.querySelector('#btn-get')
-// const closeModalButton = document.querySelector('.modal_close')
-//
-// const openModal = () => {
-//     modal.style.display = 'block'
-//     document.body.style.overflow = 'hidden'
-// }
-//
-// const closeModal = () => {
-//     modal.style.display = 'none'
-//     document.body.style.overflow = ''
-// }
-//
-// modalTrigger.onclick = () => openModal()
-// closeModalButton.onclick = () => closeModal()
-// modal.onclick = (event) => event.target === modal && closeModal()
-//
-// window.addEventListener('scroll', function() {
-//     if (window.innerHeight + window.pageYOffset >= document.body.offsetHeight) {
-//         openModal()
-//     }
-// })
-//
-// setTimeout(openModal, 10000)
+const modal = document.querySelector('.modal')
+const modalTrigger = document.querySelector('#btn-get')
+const closeModalButton = document.querySelector('.modal_close')
+
+const openModal = () => {
+    modal.style.display = 'block'
+    document.body.style.overflow = 'hidden'
+}
+
+const closeModal = () => {
+    modal.style.display = 'none'
+    document.body.style.overflow = ''
+}
+
+modalTrigger.onclick = () => openModal()
+closeModalButton.onclick = () => closeModal()
+modal.onclick = (event) => event.target === modal && closeModal()
+
+window.addEventListener('scroll', function() {
+    if (window.innerHeight + window.pageYOffset >= document.body.offsetHeight) {
+        openModal()
+    }
+})
+
+setTimeout(openModal, 10000)
 
 // CURRENCY CONVERTER
 
@@ -133,33 +133,33 @@ const eur = document.querySelector('#eur')
 
 const convert = (element, targetElement, targetElement2, curr) => {
     element.oninput = () => {
-        const request = new XMLHttpRequest()
-        request.open('GET', '../json/currency.json')
-        request.setRequestHeader('Content-type', 'application/json')
-        request.send()
-
-        request.onload = () => {
-            const response = JSON.parse(request.response)
-            if (curr === 'curSom') {
-                targetElement.value = (element.value / response.somUsd).toFixed(2)
-                targetElement2.value = (element.value / response.somEur).toFixed(2)
-            } else if (curr === 'curUsd') {
-                targetElement.value = (element.value * response.somUsd).toFixed(2)
-                targetElement2.value = (element.value * response.usdEur).toFixed(2)
-            } else {
-                targetElement.value = (element.value * response.somEur).toFixed(2)
-                targetElement2.value = (element.value * response.eurUsd).toFixed(2)
+        const fetchData = async () => {
+            try {
+                const response = await fetch('../json/currency.json')
+                const data = await response.json()
+                if (curr === 'curSom') {
+                    targetElement.value = (element.value / data.somUsd).toFixed(2)
+                    targetElement2.value = (element.value / data.somEur).toFixed(2)
+                } else if (curr === 'curUsd') {
+                    targetElement.value = (element.value * data.somUsd).toFixed(2)
+                    targetElement2.value = (element.value * data.usdEur).toFixed(2)
+                } else {
+                    targetElement.value = (element.value * data.somEur).toFixed(2)
+                    targetElement2.value = (element.value * data.eurUsd).toFixed(2)
+                }
+                element.value === '' && (targetElement.value = '')
+                element.value === '' && (targetElement2.value = '')
+            } catch (e) {
+                console.error(e, 'error')
             }
-            element.value === '' && (targetElement.value = '')
-            element.value === '' && (targetElement2.value = '')
         }
+        fetchData()
     }
 }
 
 convert(som, usd, eur, 'curSom')
 convert(usd, som, eur, 'curUsd')
 convert(eur, som, usd, 'curEur')
-
 
 // CARDS
 
@@ -168,16 +168,17 @@ const nextButton = document.querySelector('.next')
 const prevButton = document.querySelector('.prev')
 let count = 1
 
-const dataRequest = () => {
-    fetch(`https://jsonplaceholder.typicode.com/todos/${count}`)
-        .then(response => response.json())
-        .then(data => {
-            card.innerHTML = `
+const dataRequest = async () => {
+    try {
+        const response = await fetch(`https://jsonplaceholder.typicode.com/todos/${count}`)
+        const data = await response.json()
+        card.innerHTML = `
                         <h3>Title: ${data.title}</h3>
                         <div>ID: ${data.id}</div>
-                        <div>${data.completed}</div>
-                    `
-        })
+                        <div>${data.completed}</div>`
+    } catch (e) {
+        console.error(e, 'error')
+    }
 }
 
 const cardRequest = (button) => {
@@ -201,14 +202,41 @@ const cardRequest = (button) => {
     }
 }
 
-
 nextButton.onclick = () => cardRequest('next')
 prevButton.onclick = () => cardRequest('prev')
 
 cardRequest()
+
+////////////////////////
 
 fetch(`https://jsonplaceholder.typicode.com/posts`)
     .then(response => response.json())
     .then(data => {
         console.log(data)
     })
+
+
+// WEATHER
+const city = document.querySelector('.weather_city')
+const temp = document.querySelector('.weather_temp')
+const apiKey = 'e417df62e04d3b1b111abeab19cea714'
+
+const citySearch = () => {
+    const inputCity = document.querySelector('#weather_inputCity')
+    inputCity.oninput = (event) => {
+        const cityNameValue = event.target.value
+        const fetchWeather = async () => {
+            try {
+                const response = await fetch(`http://api.openweathermap.org/data/2.5/weather?q=${cityNameValue}&appid=${apiKey}`)
+                const data = await response.json()
+                city.innerHTML = `Город: ${data?.name ? data.name : 'City not found...'}`
+                temp.innerHTML = data?.main?.temp ? Math.round(data?.main?.temp - 273) + '°C' : '...'
+            } catch (e) {
+                console.error(e, 'fatal error')
+            }
+        }
+        fetchWeather()
+    }
+}
+
+citySearch()

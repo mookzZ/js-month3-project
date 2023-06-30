@@ -1,7 +1,7 @@
 .gmail {
     background-color: black;
     padding: 100px 0;
-    border-bottom: 1px solid white;
+    border-bottom: 1px solid #25D500;
 }
 
 .inner_gmail {
@@ -14,7 +14,7 @@
 .move_block {
     background: black;
     padding: 100px 0;
-    border-bottom: 2px solid orange;
+    border-bottom: 2px solid #25D500;
 }
 
 .inner_move_block {
@@ -27,7 +27,7 @@
 .parent_block {
     height: 500px;
     width: 500px;
-    border: 2px solid orange;
+    border: 2px solid #25D500;
     position: relative;
 }
 
@@ -35,14 +35,14 @@
     position: absolute;
     width: 50px;
     height: 50px;
-    background: red;
+    background: #188A00;
     left: 0;
 }
 
 .stopwatch {
     background-color: black;
     padding: 100px;
-    border-bottom: 2px solid orange;
+    border-bottom: 2px solid #25D500;
 }
 
 .stopwatch_inner {
@@ -66,7 +66,7 @@
 
 .button1 {
     background-color: black;
-    border: 2px solid orange;
+    border: 2px solid #25D500;
     border-radius: 10px;
     padding: 10px;
     color: white;
@@ -76,7 +76,7 @@
 .converter {
     background-color: black;
     padding: 100px 0;
-    border-bottom: 2px solid orange;
+    border-bottom: 2px solid #25D500;
 }
 
 .converter_inner {
@@ -106,7 +106,7 @@
 
 .cards_cont button {
     background-color: black;
-    border: 1px solid orange;
+    border: 1px solid #25D500;
     padding: 10px;
     color: white;
     border-radius: 5px;
@@ -131,4 +131,32 @@
     color: white;
     font-size: 25px;
     font-family: sans-serif;
+}
+
+.weather {
+    background-color: black;
+    padding: 100px 0;
+    border-top: 2px solid #25D500;
+}
+
+.weather_block {
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0 50px;
+    padding: 20px;
+    border: 2px solid #25D500;
+    border-radius: 10px;
+}
+
+.weather_inner span {
+    color: white;
+    width: 200px;
+}
+
+#weather_inputCity {
+    width: 300px;
+    padding: 5px;
+    border-radius: 5px;
 }
